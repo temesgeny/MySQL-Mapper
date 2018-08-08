@@ -139,7 +139,7 @@ def check_truth(injection_string):
                 add_to_cache(injection_string, True)
                 lock.release()
                 return True
-        elif response.status_code == 200:
+        elif config.truth_check == "CONTENT_STRING":
             content = response.content
             if config.truth_string in content:
                 lock.acquire()
@@ -156,9 +156,3 @@ def check_truth(injection_string):
     add_to_cache(injection_string, False)
     lock.release()
     return False
-
-if __name__ == '__main__':
-    print char_array_char("c_webserveur_31")
-    print char_array_char("/etc/passwd")
-    print char_array_char("VA5QA1cCVQgPXwEAXwZVVVsHBgtfUVBaV1QEAwIFVAJWAwBRC1tRVA==")
-    print char_array_char("ls")

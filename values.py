@@ -177,9 +177,9 @@ class ValueDetector:
 
 
 if __name__ == '__main__':
-    database = "sms"
-    table = "user"
-    column = "UserName"
+    database = ""
+    table = ""
+    column = ""
     core.read_cache()
     value_detector = ValueDetector(database, table, column)
     value_detector.get_values()
