@@ -187,7 +187,7 @@ class TableDetector:
             self.tables.append(Table(table_brute_forcer.get_name()))
 
 if __name__ == '__main__':
-    database = ""
+    database = "sms"
     core.read_cache()
     table_detector = TableDetector(database)
     table_detector.get_tables()

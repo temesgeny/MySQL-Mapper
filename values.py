@@ -157,8 +157,8 @@ class ValueDetector:
         return -1
 
     def get_values(self):
-        # value_count = self.get_count()
-        value_count = 5
+        value_count = self.get_count()
+        # value_count = 5
         core.println("Found %d values\n" % value_count)
 
         value_brute_forcers = []
@@ -177,9 +177,9 @@ class ValueDetector:
 
 
 if __name__ == '__main__':
-    database = ""
-    table = ""
-    column = ""
+    database = "sms"
+    table = "user"
+    column = "UserName"
     core.read_cache()
     value_detector = ValueDetector(database, table, column)
     value_detector.get_values()
